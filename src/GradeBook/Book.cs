@@ -3,6 +3,7 @@ using System;
 
 namespace GradeBook
 {
+    public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
     public class Book
     {
@@ -57,12 +58,18 @@ namespace GradeBook
             if(grade <= 100 && grade >= 0)
             {
                 grades.Add(grade);
+                if(GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
                 throw new ArgumentException($"Invalid {nameof(grade)}");
             }
         }
+
+        public event GradeAddedDelegate GradeAdded;
 
         public void AddLetterGrade(char letter)
         {
@@ -87,7 +94,11 @@ namespace GradeBook
         }
 
         private List<double> grades;
-        public string Name;
 
+        public string Name 
+        {
+            get; 
+            set;
+        }
     }
 }

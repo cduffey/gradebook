@@ -8,6 +8,8 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book("Cliffs Gradebook");
+            book.GradeAdded += OneGradeAdded;
+
 
             while(true) {
                 System.Console.WriteLine("Enter grade or 'q' to quit: ");
@@ -44,6 +46,11 @@ namespace GradeBook
             System.Console.WriteLine($"High grade is {stats.High:N1}.");
             System.Console.WriteLine($"Low grade is {stats.Low:N1}.");
             System.Console.WriteLine($"The letter grade is {stats.Letter}.");
+        }
+
+        static void OneGradeAdded(object sender, EventArgs args)
+        {
+            System.Console.WriteLine("A grade was added.");
         }
     }
 }
