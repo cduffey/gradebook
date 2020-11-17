@@ -7,5 +7,13 @@ namespace GradeBook
         public double Low;
 
         public char Letter;
+
+        public Statistics(double average, double high, double low, char letter)
+        {
+            Average = average;
+            High = high;
+            Low = low;
+            Letter = letter;
+        }
     }
 }
